@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+<script src="media/js/jquery.min.js"></script>
+<script type="application/javascript">
+        function checkName() {
+            var username = $("input[name='username']").val()
+            $.get("checkName.do","username="+username,function (res) {
+
+                if (res.code==0) {
+                    $("#tipsp").html("用户名可用")
+                }else {
+                    $("#tipsp").html("该用户名已存在")
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+	<form action="userregister.do" method="post">
+		<div>
+			<label> 用户名：</label> <input type="text" name="username"
+				onchange="checkName()" /> <span id="tipsp"></span>
+		</div>
+		<div>
+			<label> 密码：</label> <input type="text" name="pwd" />
+		</div>
+		<div>
+			<label>姓名：</label> <input type="text" name="realname" />
+		</div>
+		<div>
+			<label>班级：</label> <input type="text" name="stuclass" />
+		</div>
+		<div>
+			<input type="submit" value="提交" /> <input type="reset" />
+		</div>
+	</form>
+</body>
+</html>

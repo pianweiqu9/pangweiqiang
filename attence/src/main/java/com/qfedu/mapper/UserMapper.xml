@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qfedu.mapper.UserMapper">
+	<resultMap id="BaseResultMap" type="com.qfedu.domain.User">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="username" property="username"
+			jdbcType="VARCHAR" />
+		<result column="pwd" property="pwd" jdbcType="VARCHAR" />
+		<result column="realname" property="realname"
+			jdbcType="VARCHAR" />
+			<result column="stuclass" property="stuclass"
+			jdbcType="VARCHAR" />
+			
+		<result column="flag" property="flag" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, username, pwd,realname,stuclass, flag
+	</sql>
+	<select id="selectById" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_user
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		delete from t_user
+		where id
+		= #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.qfedu.domain.User">
+		<selectKey resultType="java.lang.Integer" keyProperty="id"
+			order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into t_user (username, pwd,realname,stuclass, flag
+		)
+		values
+		(#{username,jdbcType=VARCHAR},
+		#{pwd,jdbcType=VARCHAR},#{realname,jdbcType=VARCHAR},#{stuclass,jdbcType=VARCHAR}, 1
+		)
+	</insert>
+
+	<select id="selectByName" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_user
+		where username = #{username}
+	</select>
+
+</mapper>

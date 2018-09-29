@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>考勤</title>
+</head>
+<script type="application/javascript" src="js/jquery-3.1.1.js"></script>
+<script>
+$(function () {
+    $.get("stuinfo.do",function (user) {
+        $("#username").text(user.username)
+        $("#pwd").text(user.pwd)
+        $("#realname").text(user.realname)
+        $("#stuclass").text(user.stuclass)
+        $("#datestr").text(user.datestr)   
+    })
+})
+</script>
+  <style type="text/css">
+  .sonDiv{
+            margin-left: 240px;
+            line-height: 25px;
+        }
+     .me{
+            height: 200px;
+            min-height: 200px;
+            line-height: 20px;
+            width: 450px;
+            min-width: 400px;
+        }
+        </style>
+<body>
+<div style="width: 70%;height: 200px;width: 450px;position: relative;left: 200px" align="left">
+    <h2>考勤记录</h2><br/>
+    <div class="me">
+        <div align="center" class="sonDiv">
+            <span>用户名 : <font id="username"></font></span><br/>
+            <span>密码: <font id="pwd"></font></span><br/>
+            <span>姓名: <font id="realname"></font></span><br/>
+            <span>班级 : <font id="stuclass"></font></span><br/>
+            <span>打卡时间 : <font id="datestr"></font></span><br/>     
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
